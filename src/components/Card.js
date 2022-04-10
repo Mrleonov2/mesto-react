@@ -1,7 +1,8 @@
 function Card({name,link,likes,onCardClick,card}){
   function handleClick() {
-    card[name] = name;
-    card[link] = link;
+    card.name = name;
+    card.link = link;
+    card.active = true;
     onCardClick(card);
     
   }
@@ -9,8 +10,8 @@ function Card({name,link,likes,onCardClick,card}){
     <img
       className="cards__image"
       src={link}
-      alt="Изображение карточки"
-      onMouseDown={handleClick}
+      alt={name}
+      onClick={handleClick}
     />
     <h2 className="cards__title">{name}</h2>
     <button className="cards__like button" type="button"></button>
