@@ -14,6 +14,7 @@ function App() {
     link: "",
     name: "",
   });
+  const [isImagePopupOpen,setImagePopupOpen] = React.useState(false);
  
   function closeAllPopups(event) {
     if (
@@ -23,10 +24,12 @@ function App() {
       setEditProfilePopupOpen(false);
       setAddPlacePopupOpen(false);
       setEditAvatarPopupOpen(false);
+      
       setSelectedCard({ 
         link: "", 
         name: "", 
       });
+      setImagePopupOpen(false);
     }
   }
   function handleEditAvatarClick() {
@@ -39,7 +42,7 @@ function App() {
     setAddPlacePopupOpen(true);
   }
   function handleCardClick(card) {
-    console.log(card);
+    setImagePopupOpen(true)
     setSelectedCard(card);
     
   }
@@ -145,7 +148,7 @@ function App() {
           <span class="popup__input-error avatar-input-error"></span>
         </label>
       </PopupWithForm>
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} name='image'></ImagePopup>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} name='image' isOpen={isImagePopupOpen}></ImagePopup>
     </div>
   );
 }

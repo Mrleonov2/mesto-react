@@ -1,8 +1,8 @@
-function ImagePopup({ card, onClose, name }) {
+function ImagePopup({ card, onClose, name, isOpen}) {
   return (
     <div
       className={`popup popup_type_${name} 
-    ${card.name && "popup_opened"}
+    ${isOpen ? "popup_opened" : ''}
       `}
       aria-label="popup-image"
       onMouseDown={onClose}
