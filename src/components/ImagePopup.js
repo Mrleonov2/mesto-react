@@ -1,9 +1,9 @@
 function ImagePopup({ card, onClose, name }) {
   return (
     <div
-      className={`popup popup_type_${name} ${
-        card.active ? "popup_opened" : ""
-      }`}
+      className={`popup popup_type_${name} 
+    ${card.name && "popup_opened"}
+      `}
       aria-label="popup-image"
       onMouseDown={onClose}
     >
@@ -13,14 +13,11 @@ function ImagePopup({ card, onClose, name }) {
           type="button"
           onMouseDown={onClose}
         ></button>
-        <img
-          className="popup__image"
-          src={card.link}
-          alt="Всплывающее изображение"
-        />
+        <img className="popup__image" src={card.link} alt={card.name} />
         <figcaption className="popup__image-caption">{card.name}</figcaption>
       </figure>
     </div>
   );
 }
+
 export default ImagePopup;

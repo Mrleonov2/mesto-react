@@ -2,7 +2,6 @@ function Card({name,link,likes,onCardClick,card}){
   function handleClick() {
     card.name = name;
     card.link = link;
-    card.active = true;
     onCardClick(card);
     
   }

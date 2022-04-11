@@ -3,7 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import React from "react";
+import React, { useEffect } from "react";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -14,7 +14,7 @@ function App() {
     link: "",
     name: "",
   });
-
+ 
   function closeAllPopups(event) {
     if (
       event.target.classList.contains("popup_opened") ||
@@ -23,7 +23,10 @@ function App() {
       setEditProfilePopupOpen(false);
       setAddPlacePopupOpen(false);
       setEditAvatarPopupOpen(false);
-      setSelectedCard({ active: false });
+      setSelectedCard({ 
+        link: "", 
+        name: "", 
+      });
     }
   }
   function handleEditAvatarClick() {
@@ -37,7 +40,6 @@ function App() {
   }
   function handleCardClick(card) {
     console.log(card);
-    
     setSelectedCard(card);
     
   }
@@ -52,7 +54,8 @@ function App() {
         card={selectedCard}
       />
       <Footer />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} name='image'/>
+      
+
       <PopupWithForm
         title="Редактировать профиль"
         name="edit-profile"
@@ -142,7 +145,7 @@ function App() {
           <span class="popup__input-error avatar-input-error"></span>
         </label>
       </PopupWithForm>
-      
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} name='image'></ImagePopup>
     </div>
   );
 }
