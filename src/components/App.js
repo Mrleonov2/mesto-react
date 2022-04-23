@@ -5,8 +5,8 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
+import {validEdit ,validAvatar,validAddCard } from './FormValidator.js'
 import React from "react";
-
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api } from "../utils/Api.js";
 function App() {
@@ -150,5 +150,7 @@ function App() {
     </div>
   );
 }
-
+validEdit.enableValidation();
+validAvatar.enableValidation();
+validAddCard.enableValidation();
 export default App;

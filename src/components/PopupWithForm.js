@@ -15,7 +15,7 @@ function PopupWithForm({name,title,isOpen,onClose,onSubmit,children,submitText,o
             onClick={onClose}
           ></button>
           <form
-            className="popup__form popup__form_type_edit"
+            className={`popup__form popup__form_type_${name}`}
             name={name}
             id={name}
             onSubmit={onSubmit}

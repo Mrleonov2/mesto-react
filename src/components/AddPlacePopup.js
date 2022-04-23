@@ -9,7 +9,7 @@ function AddPlacePopup(props) {
     console.log({name:titleCard.current.value,link:linkCard.current.value})
     props.onAddPlace({name:titleCard.current.value,link:linkCard.current.value});
   }
-  function handleChange(e) {}
+ 
   return (
     <PopupWithForm
       title="Новое место"
@@ -18,6 +18,7 @@ function AddPlacePopup(props) {
       onClose={props.onClose}
       isOpen={props.isOpen}
       onSubmit={handleSubmit}
+      
     >
       <label className="popup__form-label">
         <input
