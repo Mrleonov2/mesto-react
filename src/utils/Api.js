@@ -5,12 +5,14 @@ class Api {
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -24,6 +26,17 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
+  
+
+  editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then(this._checkResponse);
+  }
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -34,34 +47,27 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
-
-  updateAvatar(avatar) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar,
-      }),
-    }).then(this._checkResponse);
-  }
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
   }
-  addLike(Id) {
-    return fetch(`${this._baseUrl}/cards/${Id}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._checkResponse);
+  changeLikeCardStatus(id,likeStatus) {
+    if(likeStatus){
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method: "PUT",
+        headers: this._headers,
+      }).then(this._checkResponse);
+    }else{
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method: "DELETE",
+        headers: this._headers,
+      }).then(this._checkResponse);  
+    }
+    
   }
-  deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._checkResponse);
-  }
+  
   _checkResponse(res) {
     if (res.ok) {
       return res.json();

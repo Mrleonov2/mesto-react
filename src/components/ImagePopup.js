@@ -5,13 +5,13 @@ function ImagePopup({ card, onClose, name, isOpen}) {
     ${isOpen ? "popup_opened" : ''}
       `}
       aria-label="popup-image"
-      onMouseDown={onClose}
+      onClick={onClose}
     >
       <figure className="popup__image-container">
         <button
           className="popup__button-close button"
           type="button"
-          onMouseDown={onClose}
+          onClick={onClose}
         ></button>
         <img className="popup__image" src={card.link} alt={card.name} />
         <figcaption className="popup__image-caption">{card.name}</figcaption>
