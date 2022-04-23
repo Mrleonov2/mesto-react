@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 function AddPlacePopup(props) {
-  const titleCard = React.useRef();
-  const linkCard = React.useRef();
-
+  const [cardTitle, setCardTitle] = React.useState("");
+  const [cardLink, setCardLink] = React.useState("");
+  useEffect(() => {
+    setCardTitle("");
+    setCardLink("");
+  }, [props.isOpen]);
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({name:titleCard.current.value,link:linkCard.current.value})
-    props.onAddPlace({name:titleCard.current.value,link:linkCard.current.value});
+    props.onAddPlace({ name: cardTitle, link: cardLink });
   }
- 
+  function handleChange(e) {
+    const newData = {
+      name: cardTitle,
+      link: cardLink,
+      [e.target.name]: e.target.value,
+    };
+    setCardTitle(newData.name);
+    setCardLink(newData.link);
+  }
   return (
     <PopupWithForm
       title="Новое место"
@@ -18,7 +28,6 @@ function AddPlacePopup(props) {
       onClose={props.onClose}
       isOpen={props.isOpen}
       onSubmit={handleSubmit}
-      
     >
       <label className="popup__form-label">
         <input
@@ -29,7 +38,8 @@ function AddPlacePopup(props) {
           id="title-input"
           minLength="2"
           maxLength="30"
-          ref={titleCard}
+          value={cardTitle}
+          onChange={handleChange}
           required
         />
         <span className="popup__input-error title-input-error"></span>
@@ -41,7 +51,8 @@ function AddPlacePopup(props) {
           placeholder="Ссылка на картинку"
           name="link"
           id="image-url-input"
-          ref={linkCard}
+          value={cardLink}
+          onChange={handleChange}
           required
         />
         <span className="popup__input-error image-url-input-error"></span>

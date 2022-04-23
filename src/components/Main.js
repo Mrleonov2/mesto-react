@@ -2,19 +2,21 @@ import React from "react";
 import { api } from "../utils/Api.js";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-function Main({onEditAvatar,onEditProfile,onAddPlace,onCardClick,onCardLike,onCardDelete,cards}) {
-  
+function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
-  
-  
-  
+
   return (
     <main className="content">
       <section className="profile">
-        <div
-          className="profile__avatar-contatiner"
-          onClick={onEditAvatar}
-        >
+        <div className="profile__avatar-contatiner" onClick={onEditAvatar}>
           <div
             className="profile__avatar"
             style={{ backgroundImage: `url(${currentUser.avatar})` }}
@@ -41,9 +43,9 @@ function Main({onEditAvatar,onEditProfile,onAddPlace,onCardClick,onCardLike,onCa
         <ul className="cards">
           {cards.map((item, i) => (
             <Card
-              key={i}             
+              key={item._id}
               item={item}
-              onCardClick={onCardClick}           
+              onCardClick={onCardClick}
               onCardLike={onCardLike}
               onCardDelete={onCardDelete}
             />
